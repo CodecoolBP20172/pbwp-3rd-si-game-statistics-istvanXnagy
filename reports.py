@@ -61,8 +61,8 @@ def read_table(file_name):
 # How many games are in the file?
 def count_games(file_name="game_stat.txt"):
     # count and return the total number of game titles.
-    line_list = read_file_to_line_list(file_name)
-    return len(line_list)
+    game_list = read_file_to_line_list(file_name)
+    return len(game_list)
 
 
 # Is there a game from a given year?
@@ -83,9 +83,9 @@ def get_latest(file_name):
     for i in game_list:
         latest.append(i["Release date"])
     latest = max(latest)
-    for d in game_list:
-        if d["Release date"] == latest:
-            return d["Game name"]
+    for i in game_list:
+        if i["Release date"] == latest:
+            return i["Game name"]
 
 
 # How many games do we have by genre?
@@ -104,3 +104,30 @@ def get_line_number_by_title(file_name, title):
     for ctr, i in enumerate(game_list):
         if i["Game name"] == title:
             return ctr+1
+
+
+# -------------------------------------------------
+# Bonus functions
+
+
+# What are the genres?
+def get_genres(file_name):
+    game_list = read_table(file_name)
+    genre_list = []
+    for i in game_list:
+        if i["Genre"] not in genre_list:
+            genre_list.append(i["Genre"])
+    return sorted(genre_list, key=str.lower)
+
+
+# What is the release date of the top sold "First-person shooter" game?
+def when_was_top_sold_fps(file_name):
+    game_list = read_table(file_name)
+    top_sold_games = []
+    for i in game_list:
+        if i["Genre"] == "First-person shooter":
+            top_sold_games.append(i["Copies sold"])
+    top_sold = max(top_sold_games)
+    for i in game_list:
+        if i["Copies sold"] == top_sold:
+            return i["Release date"]

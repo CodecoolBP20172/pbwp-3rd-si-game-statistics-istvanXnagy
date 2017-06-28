@@ -9,5 +9,7 @@ def export_data(file_name="export_results.txt"):
             file.writelines(str(get_latest("game_stat.txt"))+"\n")
             file.writelines(str(count_by_genre("game_stat.txt", "RPG"))+"\n")
             file.writelines(str(get_line_number_by_title("game_stat.txt", "Diablo III"))+"\n")
+            file.writelines(str(get_genres("game_stat.txt"))+"\n")
+            file.writelines(str(when_was_top_sold_fps("game_stat.txt"))+"\n")
 
 export_data()
