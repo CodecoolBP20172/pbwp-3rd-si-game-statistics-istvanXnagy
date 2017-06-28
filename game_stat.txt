@@ -1,4 +1,4 @@
-Minecraft	23	2009	Survival game	Microsoft
+﻿Minecraft	23	2009	Survival game	Microsoft
 World of Warcraft	14	2004	RPG	Blizzard Entertainment
 Terraria	12	2011	Action-adventure	Re-Logic
 Diablo III	12	2012	RPG	Blizzard Entertainment

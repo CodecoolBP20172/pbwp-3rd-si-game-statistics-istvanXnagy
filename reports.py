@@ -101,9 +101,14 @@ def count_by_genre(file_name, genre):
 # What is the line number of the given game(by title)?
 def get_line_number_by_title(file_name, title):
     game_list = read_table(file_name)
-    for ctr, i in enumerate(game_list):
-        if i["Game name"] == title:
-            return ctr+1
+    try:
+        for ctr, i in enumerate(game_list):
+            if i["Game name"] == title:
+                return ctr+1
+        if i["Game name"] != title:
+            raise ValueError
+    except ValueError:
+        print("Value Error")
 
 
 # -------------------------------------------------
@@ -124,10 +129,15 @@ def get_genres(file_name):
 def when_was_top_sold_fps(file_name):
     game_list = read_table(file_name)
     top_sold_games = []
-    for i in game_list:
-        if i["Genre"] == "First-person shooter":
-            top_sold_games.append(i["Copies sold"])
-    top_sold = max(top_sold_games)
-    for i in game_list:
-        if i["Copies sold"] == top_sold:
-            return i["Release date"]
+    try:
+        for i in game_list:
+            if i["Genre"] == "First-person shooter":
+                top_sold_games.append(i["Copies sold"])
+        if i["Genre"] != "First-person shooter":
+            raise ValueError
+        top_sold = max(top_sold_games)
+        for i in game_list:
+            if i["Copies sold"] == top_sold:
+                return i["Release date"]
+    except ValueError:
+        print("Value Error")
